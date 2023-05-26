@@ -1,0 +1,40 @@
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="margin: bottom;">
+    <div class="container">
+        <a class="navbar-brand speedster-font" href="{% url 'index' %}">
+            <img src="https://cdn.shopify.com/s/files/1/0669/7933/files/dye_logo_black_163x.png?v=1633503357" alt="Logo" width="220" height="50"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Products</a>
+                </li>
+            </ul>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="{% url 'view_cart' %}" class="nav-link">
+                        Cart
+                        <span class="badge badge-pill badge-primary">{{ cart_count }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Registration</a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+{% endblock %}
